@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-Route::get('/', [PageController::class, 'index']);
+Route::get('/home', 'ProductController@index');
 
 Route::prefix('/admin')->namespace('Admin')->group(function () {
     // for login
-    Route::match(['get', 'post'], '/login', [AdminController::class, 'login']);
+    Route::match(['get', 'post'], '/', [AdminController::class, 'login']);
     Route::group(['middleware' => ['admin']], function () {
         Route::get('dashboard', [AdminController::class, 'dashboard']);
         Route::get('settings', [AdminController::class, 'settings']);
