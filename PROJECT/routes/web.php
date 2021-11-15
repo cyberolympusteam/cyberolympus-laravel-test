@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user', 'UserController@index')->name('user');
+Route::get('/product', 'ProductController@index')->name('product');
+Route::get('/order', 'OrderController@index')->name('order');
+Route::get('/laporan', 'LaporanController@index')->name('laporan');
 
 Auth::routes();
 
