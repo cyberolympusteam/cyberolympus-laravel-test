@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Product;
 use App\OrderDetail;
-use Illuminate\Support\Facades\DB;
 
-class LaporanController extends Controller
+
+class TotalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,10 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $order = Order::all();
-        return view('laporan', compact('order'));    
+        
+        // $order = Order::all();
+
+        // return view('laporan',compact('order'));
     }
 
     /**
@@ -50,14 +52,7 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        $order = Order::all();
-        $sum = Order::sum('id');
-        $avg = Order::avg('payment_final');
-        $top10=Order::take(10)->get();
-        $top102=Order::take(10)->get();
-        $top103=Order::take(10)->get();
 
-        return view('laporan', compact('order', 'sum', 'avg', 'top10', 'top102', 'top103'));
     }
 
     /**
@@ -80,12 +75,7 @@ class LaporanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::where( 'name', 'LIKE', '%' . $id . '%' )->get();;
-        // if($delivery_date){
-        //    $order->where('delivery_date', $delivery_date);
-        // }
-        $user = $order->get();
-        return view('laporan', compact('order'));
+        
     }
 
     /**

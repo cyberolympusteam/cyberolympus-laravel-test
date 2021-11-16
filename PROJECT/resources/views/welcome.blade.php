@@ -88,7 +88,7 @@
                     <a href="{{ route('user') }}">user</a>
                     <a href="{{ route('product') }}">product</a>
                     <a href="{{ route('order') }}">order</a>
-                    <a href="{{ route('laporan') }}">laporan</a>
+                    <a href="{{ url('laporan')}}">laporan</a>
                 </div>
             </div>
         </div>

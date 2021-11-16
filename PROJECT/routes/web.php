@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\TotalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::get('/', function () {
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/order', 'OrderController@index')->name('order');
-Route::get('/laporan', 'LaporanController@index')->name('laporan');
+Route::resource('laporan', 'LaporanController');
+// Route::post('/total', 'laporanController@update')->name('total');
 
 Auth::routes();
 
