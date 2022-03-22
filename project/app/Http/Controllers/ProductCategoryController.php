@@ -13,9 +13,12 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductCategory $productcategory)
+    public function index()
     {
-        return view('product_category.index', compact('productcategory'));
+        $productCategory = ProductCategory::orderBy('id','desc')
+                                            ->get();
+
+        return view('product_category.index', compact('productCategory'));
     }
 
     /**

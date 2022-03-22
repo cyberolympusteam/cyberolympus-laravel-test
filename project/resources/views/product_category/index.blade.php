@@ -20,27 +20,49 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
+                  <th>No.</th>
                   <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Parent id</th>
+                  <th>Icon</th>
+                  <th>Icon Web</th>
+                  <th>Status</th>
+                  <th>Ordering</th>
+                  <th colspan="2">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
+                  <th>No.</th>
                   <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>Parent id</th>
+                  <th>Icon</th>
+                  <th>Icon Web</th>
+                  <th>Status</th>
+                  <th>Ordering</th>
+                  <th colspan="2">
+                    Action
+                  </th>
                 </tr>
               </tfoot>
                 <tbody>
-                    @foreach ($productcategory as $pc)
-
+                    @foreach ($productCategory as $pc)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{ $pc->name}}</td>
+                            <td>{{ $pc->parent_id}}</td>
+                            <td>
+                                <img src="{{ Storage::get($pc->icon)}}" alt="" width="50px" height="50px">
+                            </td>
+                            <td>{{ $pc->icon_web}}</td>
+                            <td>{{ $pc->status}}</td>
+                            <td>{{ $pc->ordering}}</td>
+                            <td>
+                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
