@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductCategoryController extends Controller
 {
@@ -12,9 +13,9 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProductCategory $productcategory)
     {
-        //
+        return view('product_category.index', compact('productcategory'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_category.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = request()->all();
+        $attr['icon'] = Storage::putFile('/public/icons', $request->file('icon'));
+
+        ProductCategory::create($attr);
+
+        return redirect()->route('category-product.index');
     }
 
     /**

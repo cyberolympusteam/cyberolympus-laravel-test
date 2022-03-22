@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\{ProductCategoryController, ProductController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/login', [AuthenticatedSessionController::class, 'create']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' =>'auth'], function(){
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::resource('/category-product', ProductCategoryController::class);
+    Route::resource('/product', ProductController::class);
+});
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
